@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembuat Kode QR Instan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 15px;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 360px;
+            width: 100%;
+        }
+        h2 {
+            margin-top: 0;
+            color: #00cc99;
+        }
+        p {
+            font-size: 14px;
+            color: #aaa;
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #fff;
+            color: #000;
+        }
+        button {
+            width: 98%;
+            padding: 12px;
+            background-color: #00cc99;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #00a37a;
+        }
+        #qrcode {
+            margin-top: 20px;
+            display: inline-block;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>QR Code Generator</h2>
+    <p>Masukkan link website atau teks biasa untuk dijadikan kode QR:</p>
+    
+    <input type="text" id="qrText" placeholder="Tempel link atau ketik teks di sini...">
+    <button onclick="buatQR()">Buat Kode QR</button>
+
+    <div id="qrcode"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+    function buatQR() {
+        const teks = document.getElementById("qrText").value;
+        const kotakQR = document.getElementById("qrcode");
+        
+        kotakQR.innerHTML = "";
+
+        if (teks.trim() === "") {
+            alert("Silakan isi teks atau link terlebih dahulu!");
+            return;
+        }
+
+        kotakQR.style.display = "inline-block";
+
+        new QRCode(kotakQR, {
+            text: teks,
+            width: 180,
+            height: 180,
+            colorDark : "#000000",
+            colorLight : "#ffffff"
+        });
+    }
+</script>
+
+</body>
+</html>
